@@ -1,0 +1,1 @@
+Projeto de um aplicativo similar ao Cartola, para os treinos de futebol e interclasse na escola.
