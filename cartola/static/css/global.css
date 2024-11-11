@@ -1,0 +1,93 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@400;500;600;700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: 0;
+}
+
+/* header */
+header{
+    display: flex;
+    padding: 15px;
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+header > h1{
+    flex: 0 0 60%;
+    font-size: 1.6em;
+}
+
+header > div{
+    flex: 0 0 40%;
+    padding: 5px;
+}
+
+#profile{
+    background-image: url("../images/profile.png");
+    background-position: center;
+    background-size: contain;
+    border-radius: 50px;
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+
+#profile-menu {
+    display: none;
+    position: absolute;
+    top: 80px; /* ajuste conforme necessário */
+    right: 15px; /* ajuste conforme necessário */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#profile-menu a{
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.profile-menu a:hover{
+    background-color: #f1f1f1;
+}
+
+/* botões que aparecem quando estiver deslogado */
+
+.logged-out-btn{
+    display: block;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: rgb(255, 166, 0);
+    font-size: 1.2em;
+    border-radius: 5px;
+    width: 60vw;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+#logged-out-intro{
+    padding: 15px;
+}

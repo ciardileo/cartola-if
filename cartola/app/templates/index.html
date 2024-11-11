@@ -1,11 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/global.css" %}">
+    <script src="{% static "js/main.js" %}"></script>
     <title>Cartola - Home</title>
 </head>
 <body>
-    <h1>Bem vindo ao Cartola</h1>
+    {% if user.is_authenticated %}
+        <header>
+            <h1>Bora cartolar, {{user.username}}!</h1>
+            <div>
+                <div onclick="toggleMenu()" id="profile"></div>
+                <menu id="profile-menu">
+                    <a href="{% url "login" %}">Logar</a>
+                    <a href="{% url "signup" %}">Criar Conta</a>
+                    <a href="{% url "logout" %}">Deslogar</a>
+                <menu>
+            </div>
+        </header>
+    {% else %}
+        <section id="logged-out-intro">
+            <h2>Bem vindo ao Cartola do Ceará!</h2>
+            <p>Logue ou crie sua conta para começar a jogar.</p>
+        </section>
+        <a class="logged-out-btn" href="{% url "login" %}">Logar</a>
+        <a class="logged-out-btn" href="{% url "signup" %}">Criar Conta</a>
+    {% endif %}
 </body>
 </html>

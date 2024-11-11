@@ -12,7 +12,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),  # página de admin 
     path('signup/', views.SignUpView.as_view(), name='signup'),  # criação de view
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path("", views.home, name="home")
 ]
 
