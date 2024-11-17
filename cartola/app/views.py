@@ -41,6 +41,7 @@ def login_view(request):
             console.log(f"Usuário {user} logado com sucesso!")
             return redirect("home")
         else:
+            console.log("ERRO! Verifique a senha e tente novamente!")
             messages.error(request, "ERRO! Verifique a senha e tente novamente!")
             
     context = {
@@ -55,21 +56,22 @@ def login_view(request):
 def signup_view(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        
+        console.log(request.POST)
 
         if form.is_valid():
             form.save()
             messages.success(request, "Usuário criado com sucesso!")
-            console.log(f"Novo usuário {form.get_user()} criado!")
+            console.log(f"Novo usuário {request.POST.get("username")} criado!")
             return redirect("login")
-        else:
-            messages.error(request, "Erro desconhecido, tente novamente")
-    
-    
+        else:                           
+            console.log(f"Erro ao tentar criar usuário: {form.errors.as_text()}!")
+            messages.error(request, f"ERRO! {form.errors.as_text()}")
+
     context = {
         'form': RegisterForm()
     }
-    
-    return render(
-      request, 'user/signup.html', context
-    )
 
+    return render(
+        request, 'user/signup.html', context
+    )

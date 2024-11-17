@@ -20,6 +20,7 @@ header{
     display: flex;
     padding: 15px;
     background-color: rgba(128, 128, 128, 0.116);
+    border-radius: 0 0 10px 10px;
 }
 
 header > h1{
@@ -89,6 +90,8 @@ header > div{
 }
 
 #logged-out-intro{
+    width: fit-content;
+    margin: auto;
     padding: 15px;
 }
 

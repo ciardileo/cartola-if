@@ -14,10 +14,15 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
 
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['username'].required = True
+    
     def clean_username(self):
         username = self.cleaned_data.get('username')
 
-        if User.objects.filter(username=username).exists():
-            self.add_error(
-                'username', ValidationError("Esse username já foi utilizado")
-            )
+        # garante que o username não está vazio antes de fazer a verificação
+        if username and User.objects.filter(username=username).exists():
+            raise ValidationError("Esse username já foi utilizado")
+
+        return username  # retorna o username validado

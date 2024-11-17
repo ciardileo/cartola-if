@@ -1,48 +1,53 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{% static "css/user.css" %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/auth.css" %}">
     <title>Login</title>
-</head>
-<body>
-	{% include "components/header1.html" %}
+  </head>
+  <body>
+    {% include "partials/header1.html" %}
 
-    <form 
-			action="{{ form_action }}"
-			method="POST"
-		>
+    <main>
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
 
-			<!-- necessário para a segurança do método POST -->
-			{% csrf_token %}  
-		
-			<div class="form-content">
-			{% for field in form %}
-				<div class="form-group">
-					<label for="{{field.id_for_label}}">{{field.label}}</label>
-					{{field}}
-					{{field.errors}}
-				</div>
-			{% endfor %}
-			</div>
+      <div class="form-wrapper">
+        <form action="{{ form_action }}" method="POST">
+          <!-- necessário para a segurança do método POST -->
+          {% csrf_token %}
 
-			<div class="form-content">
-				<div class="form-group">
-					<button class="btn" type="submit">Enviar</button>
-				</div>
-			</div>
+          <div class="form-content">
+            {% for field in form %}
+            <div class="form-group">
+              <label for="{{field.id_for_label}}">{{field.label}}</label>
+              {{field}} {{field.errors}}
+            </div>
+            {% endfor %}
+          </div>
 
-			{% if form.non_field_errors %}
-			<div class="form-content">
-				<div class="form-group">
-					<div class="message error">
-						{{form.non_field_errors}}
-					</div>
-				</div>
-			</div>
-			{% endif %}
-		</form>
-</body>
+          <div class="form-content">
+            <div class="form-group">
+              <button class="btn" type="submit">Enviar</button>
+            </div>
+          </div>
+
+          {% if form.non_field_errors %}
+          <div class="form-content">
+            <div class="form-group">
+              <div class="message error">{{form.non_field_errors}}</div>
+            </div>
+          </div>
+          {% endif %}
+        </form>
+      </div>
+    </main>
+  </body>
 </html>
